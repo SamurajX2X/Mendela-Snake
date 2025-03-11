@@ -1,45 +1,100 @@
-.row {}
-
-/* .board {
+body {
+    background-color: #1a1a1a;
+    color: #e0e0e0;
+    font-family: Arial, sans-serif;
     display: flex;
-    flex-wrap: wrap;
     justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+}
 
-    border: 1px solid black;
-} */
-
-/* .cell {
+.cell {
+    border: 0.2px solid #333;
+    background-color: #2d2d2d;
     width: 20px;
     height: 20px;
-    border: 1px solid black;
-} */
+    text-align: center;
+    user-select: none;
+}
 
-.container {
+#container {
     display: grid;
     grid-template-columns: repeat(20, 20px);
     grid-template-rows: repeat(20, 20px);
     gap: 1px;
-    border: 2px solid black;
-    width: max-content;
-}
-
-.cell {
-    width: 20px;
-    height: 20px;
-    background-color: #ccc;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    border: 2px solid #444;
+    background-color: #222;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
 }
 
 .snake {
-    background-color: green;
+    width: 20px;
+    height: 20px;
+    background-image: url('snake.png');
+    background-size: 100px 80px;
+}
+
+.head_down {
+    background-position: 40px 0;
+}
+
+.head_up {
+    background-position: 20px 60px;
+}
+
+.head_right {
+    background-position: 40px 60px;
+}
+
+.head_left {
+    background-position: 20px 0;
+}
+
+.tail_up {
+    background-position: 40px 40px;
+}
+
+.tail_down {
+    background-position: 20px 20px;
+}
+
+.tail_left {
+    background-position: 40px 20px;
+}
+
+.tail_right {
+    background-position: 20px 40px;
+}
+
+.body_up {
+    background-position: 60px 60px;
+}
+
+.body_down {
+    background-position: 80px 80px;
+}
+
+.curve_up {
+    background-position: 60px 40px;
+}
+
+.curve_down {
+    background-position: 0px 60px;
+}
+
+.curve_left {
+    background-position: 60px 0;
+}
+
+.curve_right {
+    background-position: 0 0;
 }
 
 .apple {
-    background-color: red;
-}
-
-.wall {
-    background-color: black;
+    width: 20px;
+    height: 20px;
+    background-image: url('snake.png');
+    background-size: 100px 80px;
+    background-position: 0px 20px;
 }
