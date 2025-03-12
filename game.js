@@ -3,7 +3,7 @@ import Board from './board.js';
 const Game = {
     init() {
         this.boardSize = 20;
-        this.snake = [];      // segmenty weza
+        this.snake = [];      // czesci
         this.direction = 'right';  // aktualny kierunek
         this.nextDirection = 'right';  // nastepny kierunek
         this.canChangeDirection = true;  // czy mozna zmienic kierunek (troubleshooooooooooting k)
@@ -13,7 +13,7 @@ const Game = {
         this.startGame();
     },
 
-    startGame() {
+    async startGame() {
         const centerX = Math.floor(this.boardSize / 2);
         const centerY = Math.floor(this.boardSize / 2);
         this.snake = [
@@ -22,14 +22,14 @@ const Game = {
             { x: centerX, y: centerY - 2 }  // ogon
         ];
 
-        this.updateSnake();
+        await this.updateSnake();
         this.spawnApple();
 
-        this.moveInterval = setInterval(() => this.moveSnake(), 200);  // ruch 
+        this.moveInterval = setInterval(() => this.moveSnake(), 140);  // ruch 
         this.listenForKeys();
     },
 
-    updateSnake() {
+    async updateSnake() {
         // czyszczenie klas 
         document.querySelectorAll('.cell').forEach(cell => {
             cell.classList.remove(
@@ -66,15 +66,15 @@ const Game = {
                     else if (dy === 1) cell.classList.add('tail_right');
                     else if (dy === -1) cell.classList.add('tail_left');
                 } else {
-                    // rozroznienie prostych i zakretow
+                    //  prostych i zakretow
                     const prev = this.snake[index - 1];
                     const next = this.snake[index + 1];
 
                     if (prev.x === segment.x && next.x === segment.x) {
-                        // segment poziomy
+                        // poziomy
                         cell.classList.add('body_down');
                     } else if (prev.y === segment.y && next.y === segment.y) {
-                        // segment pionowy
+                        //  pionowy
                         cell.classList.add('body_up');
                     } else {
                         // zakrety
@@ -157,10 +157,10 @@ const Game = {
         document.addEventListener('keydown', (event) => {
             if (!this.canChangeDirection) return;
 
-            if (event.key === 'ArrowUp' && this.direction !== 'down') this.nextDirection = 'up';
-            if (event.key === 'ArrowDown' && this.direction !== 'up') this.nextDirection = 'down';
-            if (event.key === 'ArrowLeft' && this.direction !== 'right') this.nextDirection = 'left';
-            if (event.key === 'ArrowRight' && this.direction !== 'left') this.nextDirection = 'right';
+            if (event.key === 'w' && this.direction !== 'down') this.nextDirection = 'up';
+            if (event.key === 's' && this.direction !== 'up') this.nextDirection = 'down';
+            if (event.key === 'a' && this.direction !== 'right') this.nextDirection = 'left';
+            if (event.key === 'd' && this.direction !== 'left') this.nextDirection = 'right';
         });
     }
 };
